@@ -1,11 +1,11 @@
 import React from 'react';
-import { GoogleAuthProvider, FacebookAuthProvider,signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from '../../firebase.init';
 
 const SocialLogin = () => {
     const googleProvider = new GoogleAuthProvider();
-    const facebookProvider= new FacebookAuthProvider();
-    
+    const facebookProvider = new FacebookAuthProvider();
+
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
@@ -13,7 +13,8 @@ const SocialLogin = () => {
                 if (user) {
                     console.log(user.displayName);
                 }
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 const errorMessage = error.message;
                 if (error) {
                     console.log(errorMessage);
@@ -21,9 +22,22 @@ const SocialLogin = () => {
 
             });
     }
-    const handleFacebookSignIn=()=>{
+    const handleFacebookSignIn = () => {
 
+        signInWithPopup(auth, facebookProvider)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+
+            })
+            .catch((error) => {
+                const errorMessage = error.errorMessage;
+                if (error) {
+                    console.log(errorMessage)
+                }
+            })
     }
+
     return (
         <div>
             <button onClick={handleGoogleSignIn} className='btn btn-secondary'>Google Sign in </button>
