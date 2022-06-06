@@ -1,9 +1,10 @@
 import React from 'react';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     return (
         <div>
-            This is Login
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
